@@ -378,77 +378,77 @@
   
   <!-- Custom JavaScript -->
 <script>
-$(document).ready(function() {
-  function updateButtonStyles() {
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    if (currentTheme === 'dark') {
-      $('.theme-toggle-btn').removeClass('btn-outline-dark').addClass('btn-outline-light');
-    } else {
-      $('.theme-toggle-btn').removeClass('btn-outline-light').addClass('btn-outline-dark');
+  $(document).ready(function() {
+    function updateButtonStyles() {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      if (currentTheme === 'dark') {
+        $('.theme-toggle-btn').removeClass('btn-outline-dark').addClass('btn-outline-light');
+      } else {
+        $('.theme-toggle-btn').removeClass('btn-outline-light').addClass('btn-outline-dark');
+      }
     }
-  }
-  
-  // Check for theme in localStorage
-  const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
-  
-  // If the current theme in localStorage is "dark"
-  if (currentTheme === 'dark') {
-    document.documentElement.setAttribute('data-theme', 'dark');
-    $('#checkbox').prop('checked', true);
-  }
-  
-  // Call updateButtonStyles on page load
-  updateButtonStyles();
-  
-  // Theme switch event listener
-  $('#checkbox').on('change', function() {
-    if ($(this).is(':checked')) {
-      document.documentElement.setAttribute('data-theme', 'dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.setAttribute('data-theme', 'light');
-      localStorage.setItem('theme', 'light');
-    }
-    // Call updateButtonStyles after theme change
-    updateButtonStyles();
-  });
-  
-  // Smooth scrolling
-  $('.nav-link').click(function(e) {
-    e.preventDefault();
-    const target = $(this).attr('href');
-    $('html, body').animate({
-      scrollTop: $(target).offset().top - 70
-    }, 600);
-  });
-  
-  // Add animation class to elements when scrolled into view
-  $(window).scroll(function() {
-    var scrollDistance = $(window).scrollTop();
     
-    // Fade in sections on scroll
-    $('section').each(function(i) {
-      if ($(this).position().top <= scrollDistance + 300) {
-        $(this).addClass('fadeInUp');
+    // Check for theme in localStorage
+    const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+    
+    // If the current theme in localStorage is "dark"
+    if (currentTheme === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      $('#checkbox').prop('checked', true);
+    }
+    
+    // Call updateButtonStyles on page load
+    updateButtonStyles();
+    
+    // Theme switch event listener
+    $('#checkbox').on('change', function() {
+      if ($(this).is(':checked')) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      }
+      // Call updateButtonStyles after theme change
+      updateButtonStyles();
+    });
+    
+    // Smooth scrolling
+    $('.nav-link').click(function(e) {
+      e.preventDefault();
+      const target = $(this).attr('href');
+      $('html, body').animate({
+        scrollTop: $(target).offset().top - 70
+      }, 600);
+    });
+    
+    // Add animation class to elements when scrolled into view
+    $(window).scroll(function() {
+      var scrollDistance = $(window).scrollTop();
+      
+      // Fade in sections on scroll
+      $('section').each(function(i) {
+        if ($(this).position().top <= scrollDistance + 300) {
+          $(this).addClass('fadeInUp');
+        }
+      });
+      
+      // Change navbar background on scroll
+      if (scrollDistance > 100) {
+        $('.navbar').css('padding', '10px 0');
+      } else {
+        $('.navbar').css('padding', '15px 0');
       }
     });
     
-    // Change navbar background on scroll
-    if (scrollDistance > 100) {
-      $('.navbar').css('padding', '10px 0');
-    } else {
-      $('.navbar').css('padding', '15px 0');
-    }
+    // Initially trigger scroll to add animations to visible elements
+    $(window).trigger('scroll');
+    
+    // Add animation to skills items with delay
+    $('#about .col-md-2').each(function(index) {
+      $(this).css('animation-delay', (index * 0.1) + 's');
+    });
   });
-  
-  // Initially trigger scroll to add animations to visible elements
-  $(window).trigger('scroll');
-  
-  // Add animation to skills items with delay
-  $('#about .col-md-2').each(function(index) {
-    $(this).css('animation-delay', (index * 0.1) + 's');
-  });
-});
   </script>
   </body>
   </html>
